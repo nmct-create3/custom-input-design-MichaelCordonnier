@@ -31,6 +31,7 @@
     --global-color-primary-500-alpha-75: hsl(var(--global-color-primary-500-hsl) / .75);
     --global-color-primary-500-alpha-30: hsl(var(--global-color-primary-500-hsl) / .3);
 
+    --global-color-neutral-000: #FFFFFF;
     --global-color-neutral-050: #F5F6FA;
     --global-color-neutral-100: #E2E3E7;
     --global-color-neutral-200: #caccd4;
@@ -43,9 +44,22 @@
     --global-color-neutral-900: #35374d;
     --global-color-neutral-950: #20223a;
 
+    --global-input-borderWidth: var(--global-borderWidth);
+    --global-input-backgroundColor: var(--global-color-neutral-800);
+    --global-input-color: var(--global-color-neutral-950);
+    --global-color-borderColor: var(--global-color-neutral-100);
+    --global-hover-borderColor: var(--global-color-neutral-200); 
+    --global-input-focus-borderColor: var(--global-color-primary-500);
+    --global-focus-boxShadow: 0 0 0 3px var(--global-color-primary-500-alpha-30);
+
+    --global-normal-boxShadow:0px 1px 3px hsla(0, 0%, 0%, 0.16);
+
     /* border stuff */
     --global-borderRadius: 3px;
     --global-borderWidth: 1px;
+    --global-borderWidth-s:1px;
+    --global-borderWidt-m:3px;
+    --global-border-circle:50%;
 
     /* transitions */
     --global-transitionTiming-alpha: .1s ease-out;
@@ -67,6 +81,23 @@
     /*  = 48px */
     --global-whitespace-xxl: calc(var(--global-whitespace) * 3);
     /*  = 72px */
+
+    /* Global inout variabels */
+    --global-input-backgroundColor: White;
+    --global-input-color: var(--global-color-neutral-950);
+
+   
+}
+
+@media(prefers-color-scheme: dark){
+    :root{
+        --global-input-backgroundColor: var(--global-input-backgroundColor);
+        --global-input-color: var(--global-color-neutral-950);
+        --global-color-borderColor: var(--global-color-neutral-100);
+        --global-hover-borderColor: var(--global-color-neutral-200); 
+        --global-input-focus-borderColor: var(--global-color-primary-500);
+        --global-focus-boxShadow: 0 0 0 3px var(--global-color-primary-500-alpha-30);
+       }
 }
 
 /*---------------------------------------/*
@@ -556,10 +587,10 @@ input::placeholder {
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: var(--global-borderWidth) solid var(--global-color-neutral-100);
+    border: var(--global-input-borderWidth) solid var(--global-color-borderColor);
     border-radius: var(--global-borderRadius);
-    color: var(--global-color-neutral-950);
-    background-color: White;
+    color: var(--global-input-color);
+    background-color: var(--global-input-backgroundColor);
     font-family: inherit;
     font-size: 1rem;
     line-height: calc(var(--global-baseline) * 3);
@@ -568,13 +599,13 @@ input::placeholder {
     transition: border var(--global-transition-timing-alpha);
 
     &:hover {
-        border-color: var(--global-color-neutral-200);
+        border-color: var(--global-hover-borderColor);
     }
 
     &:focus,
     &:active {
-        border-color: var(--global-color-primary-500);
-        box-shadow: 0 0 0 3px var(--global-color-primary-500-alpha-30);
+        border-color: var(--global-input-focus-borderColor);
+        box-shadow: var(--global-focus-boxShadow);
     }
 }
 
@@ -634,7 +665,178 @@ input::placeholder {
         box-shadow: none;
     }
 }
+/* custom inputs */
 
+
+/* .c-custom-option__fake-input--checkbox{
+
+}
+
+.c-option--hidden + .c-custom-option{
+ 
+} */
+
+/* CUSTOM CHECKBOXES & RADIO */
+.c-custom-option{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+
+
+
+
+/* CUSTOM CHECKBOXES */
+.c-option--hidden + .c-custom-option .c-custom-option__fake-input--checkbox {
+    width: 16px;
+    height: 16px;
+    border: solid var(--global-color-borderColor);    
+    border-radius: var(--global-borderRadius);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease-in-out;
+   
+    
+    
+}
+
+.c-option--hidden + .c-custom-option .c-custom-option__fake-input--checkbox .c-custom-option__symbol{
+    fill: var(--global-color-primary-500);
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+    
+  }
+  .c-option--hidden:checked + .c-custom-option .c-custom-option__fake-input--checkbox  .c-custom-option__symbol{
+    opacity: 100;
+  }
+
+  .c-option--hidden:checked + .c-custom-option .c-custom-option__fake-input--checkbox {
+
+   border: solid var(--global-color-primary-500-alpha-75);
+}
+.c-option--hidden:hover + .c-custom-option .c-custom-option__fake-input--checkbox {
+
+    border: solid var(--global-color-primary-500-alpha-30);
+ }
+  .c-option--hidden:focus + .c-custom-option .c-custom-option__fake-input--checkbox {
+    border: solid var(--global-color-primary-500-alpha-75);
+    box-shadow: var(--global-focus-boxShadow);
+}
+
+/* CUSTOM RADIO BUTTONS */
+.c-option-list__item{
+    display: flex;
+    align-items: center;
+    > .c-custom-option{
+        margin-bottom: 0;
+    }
+}
+
+.c-option--hidden + .c-custom-option .c-custom-option__fake-input--radio{
+    width: 16px;
+    height: 16px;
+    border: solid var(--global-color-borderColor);    
+    border-radius: var(--global-border-circle);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease-in-out;
+}
+
+.c-option--hidden + .c-custom-option .c-custom-option__fake-input--radio .c-custom-option__symbol{
+        background-color:var(--global-color-primary-500);
+        height: 6px;
+        width: 6px;
+        border-radius: var(--global-border-circle);
+        opacity: 0;
+        transition:opacity 0.1s ease-in-out;
+}
+
+
+
+  .c-option--hidden:checked + .c-custom-option .c-custom-option__fake-input--radio  .c-custom-option__symbol{
+    opacity: 100;
+  }
+
+  .c-option--hidden:checked + .c-custom-option .c-custom-option__fake-input--radio {
+
+   border: solid var(--global-color-primary-500-alpha-75);
+}
+.c-option--hidden:hover + .c-custom-option .c-custom-option__fake-input--radio {
+
+    border: solid var(--global-color-primary-500-alpha-30);
+ }
+
+  .c-option--hidden:focus + .c-custom-option .c-custom-option__fake-input--radio {
+    border: solid var(--global-color-primary-500-alpha-75);
+    box-shadow: var(--global-focus-boxShadow);
+}
+
+
+/* Toevoegen margins bottom */
+  .c-option-list{
+    margin-bottom: 24px;
+  }
+  .c-option-list__item{
+    margin-bottom: 12px;
+  }
+
+  /* c-toggle */
+
+
+  .c-custom-toggle__fake-input{
+    display: block;
+    width: 48px;
+    height: 24px;
+    border-radius: 24px;
+    border: solid var(--global-color-borderColor);
+    background-color: var(--global-color-neutral-050);
+    transition: all 0.3s ease-in-out;
+    
+  }
+
+  .c-option--hidden:focus + .c-custom-toggle .c-custom-toggle__fake-input{
+    border: solid var(--global-color-primary-500-alpha-75);
+    box-shadow: var(--global-focus-boxShadow);
+  }
+
+
+  .c-custom-toggle__fake-input::after{
+    content: "";
+    display: block;
+    background-color: var(--global-color-neutral-000);
+
+    border: var(--global-color-neutral-050);
+    border-radius: var(--global-border-circle);
+    height: 100%;
+    width: 22px;
+    box-shadow: var(--global-normal-boxShadow);
+    transition: transform 0.1s ease-in-out;
+}
+
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input{
+    background-color: var(--global-color-primary-500);
+    border: solid var(--global-color-primary-500-alpha-75);
+}
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input::after{
+    transform: translateX(106%);
+}
+
+
+.c-custom-toggle-list__item .c-label{
+    display: flex;
+}
+
+.c-label--option{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: center;
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/

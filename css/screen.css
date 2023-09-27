@@ -46,11 +46,9 @@
 
     --global-input-borderWidth: var(--global-borderWidth);
     --global-input-backgroundColor: var(--global-color-neutral-800);
-    --global-input-color: var(--global-color-neutral-950);
     --global-color-borderColor: var(--global-color-neutral-100);
     --global-hover-borderColor: var(--global-color-neutral-200); 
     --global-input-focus-borderColor: var(--global-color-primary-500);
-    --global-focus-boxShadow: 0 0 0 3px var(--global-color-primary-500-alpha-30);
 
     --global-normal-boxShadow:0px 1px 3px hsla(0, 0%, 0%, 0.16);
 
@@ -82,24 +80,49 @@
     --global-whitespace-xxl: calc(var(--global-whitespace) * 3);
     /*  = 72px */
 
-    /* Global inout variabels */
-    --global-input-backgroundColor: White;
-    /* --global-input-color: var(--global-color-neutral-950);
-    --global-page-color: var(--global-color-neutral-950);
-    --global-page-backgroundColor: var(--global-color-neutral-950); */
-   
-}
+    /* VARIABELEN */
+    --global-form-backgroundColor: white;
+    --global-page-backgroundColor: var(--global-color-neutral-050); 
+    --global-page-titelTextColor: var(--global-color-neutral-950); 
+    --global-page-textColor: var(--global-color-neutral-800);
+    --global-page-textColorLight: var(--global-color-neutral-600);
+    --global-page-borderColer:var(--global-color-neutral-100);
+    --global-input-borderColorHover: var(--global-color-neutral-200) ;
+    --global-page-fillColorCircle: var(--global-color-primary-500);
+    --global-page-fillColorOuterCircle: #1B4186;
+    --global-input-focusHoverBorderShadowColor: 0 0 0 3px var(--global-color-primary-500-alpha-30);
+    --global-input-focusHoverBorderColor: var(--global-color-primary-500);
+    --global-input-activeBorderColor: var(--global-color-primary-600);
+    --global-button-bgColorHover: #4F95FF;
+    --global-input-errorColor: hsl(0, 100%, 60%);
+    --global-input-errorColorBoxShadow: hsl(var(--global-input-errorBorder)/ .3);
+    --global-input-bgColor: white; 
+    --global-link-color: var(--global-color-primary-500);
+    --global-link-focusColor: var(--global-color-primary-400);
+    --global-link-activeColor: var(--global-color-primary-600);
+    --global-placeholder-color: var(--global-color-neutral-300);
+    --global-input-blauwDertig: var(--global-color-primary-500-alpha-30);
+    --global-input-blauwVijfenZeventig: var(var(--global-color-primary-500-alpha-75));  
+    --global-input-bgColor: white;
+    --global-input-text: var(--global-color-neutral-900);
+    
+}   
+
+ /* VARIABELEN DARK SCHEME (enkel voor index) */
 
 @media(prefers-color-scheme: dark){
     :root{
-        --global-input-backgroundColor: var(--global-color-neutral-800);
-        --global-input-color: var(--global-color-neutral-950);
-        --global-focus-boxShadow: 0 0 0 3px var(--global-color-primary-500-alpha-30);
-        --global-page-color: var(--global-color-neutral-050);
-        --global-page-backgroundColor: var(--global-color-neutral-950);
-
-       }
+        --global-page-backgroundColor: var(--global-color-neutral-950); 
+        --global-form-backgroundColor: var(--global-color-neutral-900);
+        --global-placeholder-color: var(--global-color-neutral-600);
+        --global-page-titelTextColor: white; 
+        --global-page-textColor: var(--global-color-neutral-300);
+        --global-page-borderColer: var(--global-color-neutral-950);
+        --global-input-bgColor: var(--global-color-neutral-950);
+        --global-input-text:white;
+    }
 }
+
 
 /*---------------------------------------/*
  # GENERIC
@@ -143,10 +166,10 @@ html {
     Customize the background color and color to match your design.
 */
 
-::selection {
+/* ::selection {
     background: var(--global-color-primary-500);
     color: white;
-}
+} */
 
 /*
     Elements: typography
@@ -241,7 +264,7 @@ a {
     &,
     &:visited {
         transition: all var(--global-transitionTiming-alpha);
-        color: var(--global-color-primary-500);
+        color: var(--global-link-color);
         outline-color: var(--global-link-BoxShadowColor);
         outline-width: medium;
         outline-offset: 2px;
@@ -249,11 +272,11 @@ a {
 
     &:hover,
     &:focus {
-        color: var(--global-color-primary-400);
+        color: var(--global-link-focusColor);
     }
 
     &:active {
-        color: var(--global-color-primary-600);
+        color: var(--global-link-activeColor);
     }
 
 }
@@ -264,7 +287,7 @@ input {
 }
 
 input::placeholder {
-    color: var(--global-color-neutral-300);
+    color: var(--global-placeholder-color);
 }
 
 /*------------------------------------*\
@@ -504,15 +527,30 @@ input::placeholder {
 }
 
 .c-logo__path--1 {
-    fill: var(--global-color-neutral-950);
+    fill: var(--global-page-titelTextColor);
 }
 
 .c-logo__path--2 {
-    fill: var(--global-color-primary-500);
+    --circle-fillColor: var(--global-color-primary-500);
+    fill: var(--circle-fillColor);
+    
+}
+@media(prefers-color-scheme: dark){
+    .c-logo__path--2{
+        --circle-fillColor: var(--global-color-neutral-050);
+    }
 }
 
+
+
 .c-logo__path--3 {
-    fill: var(--global-color-primary-700);
+    --circle-fillColor: var(--global-color-primary-700);
+    fill: var(--circle-fillColor);
+}
+@media(prefers-color-scheme: dark){
+    .c-logo__path--3{
+        --circle-fillColor: var(--global-color-neutral-050);
+    }
 }
 
 /*
@@ -522,7 +560,7 @@ input::placeholder {
 */
 
 .c-card {
-    background-color: White;
+    background-color: var(--global-form-backgroundColor);
     margin-bottom: var(--global-whitespace);
     border-radius: var(--global-borderRadius);
     box-shadow: 0 0 0 var(--global-borderWidth) rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, .075);
@@ -537,7 +575,7 @@ input::placeholder {
 
 .c-card__footer {
     text-align: center;
-    border-top: var(--global-borderWidth) solid var(--global-color-neutral-100);
+    border-top: var(--global-borderWidth) solid var(--global-page-backgroundColor);
 }
 
 .c-card__title {
@@ -545,7 +583,7 @@ input::placeholder {
     font-size: 1.125rem;
     line-height: calc(var(--global-baseline) * 3);
     font-weight: 600;
-
+    color: var(--global-page-titelTextColor);
     @media (min-width: 27em) {
         margin-bottom: var(--global-whitespace-xl);
     }
@@ -588,10 +626,10 @@ input::placeholder {
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: var(--global-input-borderWidth) solid var(--global-color-borderColor);
+    border: var(--global-input-borderWidth) solid var(--global-page-borderColer);
     border-radius: var(--global-borderRadius);
-    color: var(--global-input-color);
-    background-color: var(--global-input-backgroundColor);
+    color: var(--global-input-text);
+    background-color: var(--global-input-bgColor);
     font-family: inherit;
     font-size: 1rem;
     line-height: calc(var(--global-baseline) * 3);
@@ -600,13 +638,13 @@ input::placeholder {
     transition: border var(--global-transition-timing-alpha);
 
     &:hover {
-        border-color: var(--global-hover-borderColor);
+        border-color: var(--global-input-borderColorHover);
     }
 
     &:focus,
     &:active {
-        border-color: var(--global-input-focus-borderColor);
-        box-shadow: var(--global-focus-boxShadow);
+        border-color: var(--global-input-focusHoverBorderColor);
+        box-shadow: var(--global-input-focusHoverBorderShadowColor);
     }
 }
 
@@ -627,7 +665,7 @@ input::placeholder {
     font-size: .875rem;
     padding-bottom: var(--global-whitespace-xs);
     line-height: calc(var(--global-baseline) * 2);
-    color: var(--label-color, var(--global-color-neutral-800));
+    color: var(--global-page-textColor, var(--global-color-neutral-800));
 
 }
 
@@ -655,15 +693,15 @@ input::placeholder {
     transition: all var(--global-transition-timing-alpha);
 
     &:hover {
-        background-color: var(--global-color-primary-400);
+        background-color: var(--global-input-focusHoverBorderColor);
     }
 
     &:focus {
-        box-shadow: 0 0 0 3px var(--global-color-primary-500-alpha-30);
+        box-shadow: var(--global-input-focusHoverBorderShadowColor);
     }
 
     &:active {
-        background-color: var(--global-color-primary-600);
+        background-color: var(--global-input-activeBorderColor);
         box-shadow: none;
     }
 }
@@ -693,20 +731,21 @@ input::placeholder {
 .c-option--hidden + .c-custom-option .c-custom-option__fake-input--checkbox {
     width: 16px;
     height: 16px;
-    border: solid var(--global-color-borderColor);    
+    border: solid var(--global-page-borderColer);    
     border-radius: var(--global-borderRadius);
     padding: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.1s ease-in-out;
+    background-color: var(--global-input-bgColor);
    
     
     
 }
 
 .c-option--hidden + .c-custom-option .c-custom-option__fake-input--checkbox .c-custom-option__symbol{
-    fill: var(--global-color-primary-500);
+    fill: var(--global-link-color);
     opacity: 0;
     transition: opacity 0.1s ease-in-out;
     
@@ -717,15 +756,16 @@ input::placeholder {
 
   .c-option--hidden:checked + .c-custom-option .c-custom-option__fake-input--checkbox {
 
-   border: solid var(--global-color-primary-500-alpha-75);
+   border: solid var(--global-page-borderColer);
 }
 .c-option--hidden:hover + .c-custom-option .c-custom-option__fake-input--checkbox {
 
-    border: solid var(--global-color-primary-500-alpha-30);
+    border: solid var(--global-link-activeColor);
+    box-shadow: var(--global-input-focusHoverBorderShadowColor);
  }
   .c-option--hidden:focus + .c-custom-option .c-custom-option__fake-input--checkbox {
-    border: solid var(--global-color-primary-500-alpha-75);
-    box-shadow: var(--global-focus-boxShadow);
+    border: solid var(--global-link-activeColorg);
+    box-shadow: var(--global-input-focusHoverBorderShadowColor);
 }
 
 /* CUSTOM RADIO BUTTONS */
@@ -750,7 +790,7 @@ input::placeholder {
 }
 
 .c-option--hidden + .c-custom-option .c-custom-option__fake-input--radio .c-custom-option__symbol{
-        background-color:var(--global-color-primary-500);
+        background-color:var( --global-input-focusHoverBorderColor);
         height: 6px;
         width: 6px;
         border-radius: var(--global-border-circle);
@@ -906,9 +946,11 @@ input::placeholder {
 
 .c-password-toggle__symbol--show{
     opacity: 100;
+    fill: var(--global-placeholder-color);
 }
 .c-password-toggle__symbol--hide{
     opacity: 0;
+    fill: var(--global-placeholder-color);
 }
 
 .c-password-toggle__checkbox:checked + .c-password-toggle__label > .c-password-toggle__symbol--show {
@@ -921,12 +963,12 @@ input::placeholder {
 
 }
 
-.c-password-toggle__checkbox {
-    border: solid hotpink;
-}
-
 .has-error{
     --label-color:red;
+}
+
+.c-card__title{
+    
 }
 
 /*------------------------------------*\
@@ -1533,4 +1575,8 @@ input::placeholder {
     .u-6-of-6-bp5 {
         flex-basis: 100% !important;
     }
+}
+
+.u-nounderline{
+    text-decoration: none;
 }

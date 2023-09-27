@@ -84,22 +84,20 @@
 
     /* Global inout variabels */
     --global-input-backgroundColor: White;
-    --global-input-color: var(--global-color-neutral-950);
+    /* --global-input-color: var(--global-color-neutral-950);
     --global-page-color: var(--global-color-neutral-950);
-    --global-page-backgroundColor: var(--global-color-neutral-950);
+    --global-page-backgroundColor: var(--global-color-neutral-950); */
    
 }
 
 @media(prefers-color-scheme: dark){
     :root{
-        --global-input-backgroundColor: var(--global-input-backgroundColor);
+        --global-input-backgroundColor: var(--global-color-neutral-800);
         --global-input-color: var(--global-color-neutral-950);
-        --global-color-borderColor: var(--global-color-neutral-100);
-        --global-hover-borderColor: var(--global-color-neutral-200); 
-        --global-input-focus-borderColor: var(--global-color-primary-500);
         --global-focus-boxShadow: 0 0 0 3px var(--global-color-primary-500-alpha-30);
         --global-page-color: var(--global-color-neutral-050);
         --global-page-backgroundColor: var(--global-color-neutral-950);
+
        }
 }
 

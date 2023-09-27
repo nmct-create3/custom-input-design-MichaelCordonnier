@@ -85,7 +85,8 @@
     /* Global inout variabels */
     --global-input-backgroundColor: White;
     --global-input-color: var(--global-color-neutral-950);
-
+    --global-page-color: var(--global-color-neutral-950);
+    --global-page-backgroundColor: var(--global-color-neutral-950);
    
 }
 
@@ -97,6 +98,8 @@
         --global-hover-borderColor: var(--global-color-neutral-200); 
         --global-input-focus-borderColor: var(--global-color-primary-500);
         --global-focus-boxShadow: 0 0 0 3px var(--global-color-primary-500-alpha-30);
+        --global-page-color: var(--global-color-neutral-050);
+        --global-page-backgroundColor: var(--global-color-neutral-950);
        }
 }
 
@@ -131,8 +134,8 @@ img {
 html {
     line-height: 1.5;
     font-family: "Inter Web", Helvetica, arial, sans-serif;
-    color: var(--global-color-neutral-950);
-    background-color: var(--global-color-neutral-050);
+    color: var(--global-page-color);
+    background-color: var(--global-page-backgroundColor);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -626,7 +629,8 @@ input::placeholder {
     font-size: .875rem;
     padding-bottom: var(--global-whitespace-xs);
     line-height: calc(var(--global-baseline) * 2);
-    color: var(--global-color-neutral-800);
+    color: var(--label-color, var(--global-color-neutral-800));
+
 }
 
 .c-label--option {
@@ -730,7 +734,7 @@ input::placeholder {
 .c-option-list__item{
     display: flex;
     align-items: center;
-    > .c-custom-option{
+    & > .c-custom-option{
         margin-bottom: 0;
     }
 }
@@ -837,6 +841,96 @@ input::placeholder {
     margin-bottom: 12px;
     align-items: center;
 }
+
+.c-custom-toggle--inverted{
+   flex-direction: row-reverse;
+   justify-content: space-between;
+   border-bottom: solid var(--global-color-neutral-100);
+   padding: 11px;
+}
+
+/* @media (prefers-color-scheme: dark){
+    .c-custom-toggle{
+        
+    }
+} */
+
+.c-custom-select{
+    display: block;
+    position: relative;
+    & .c-custom-select__symbol{
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 24px;
+        pointer-events: none;
+    }
+}
+.c-password-toggle-container{
+    position: relative;
+
+    & .c-password-toggle{
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+    }
+    
+    /* & .c-password-toggle__checkbox{
+        position: absolute;
+        top: 0;
+        right: 0;
+    } */
+}
+
+
+
+
+
+.c-password-toggle__label{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    height: 100%;
+    width: 20px;
+    aspect-ratio: 1;
+    & .c-password-toggle__symbol{
+        position: absolute;
+        top: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        
+
+    }
+}
+
+.c-password-toggle__symbol--show{
+    opacity: 100;
+}
+.c-password-toggle__symbol--hide{
+    opacity: 0;
+}
+
+.c-password-toggle__checkbox:checked + .c-password-toggle__label > .c-password-toggle__symbol--show {
+    opacity: 0;
+}
+.c-password-toggle__checkbox:checked + .c-password-toggle__label > .c-password-toggle__symbol--hide {
+    opacity: 100;
+}
+.c-password-toggle{
+
+}
+
+.c-password-toggle__checkbox {
+    border: solid hotpink;
+}
+
+.has-error{
+    --label-color:red;
+}
+
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
